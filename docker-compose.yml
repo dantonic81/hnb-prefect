@@ -13,6 +13,7 @@ services:
       - 5432
     volumes:
       - db:/var/lib/postgresql/data
+      - ./sql-scripts:/docker-entrypoint-initdb.d  # Mount the SQL scripts
     profiles: ["server"]
 
   ### MinIO for flow storage
