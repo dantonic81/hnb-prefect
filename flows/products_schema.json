@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "sku": {
+      "type": "integer",
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "category": {
+      "type": "string"
+    },
+    "popularity": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  },
+  "required": ["sku", "name", "price", "category", "popularity"],
+  "additionalProperties": false
+}
+
+
