@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string", "unique":  true},
+    "first_name": {"type": "string"},
+    "last_name": {"type": "string"},
+    "date_of_birth": {"anyOf": [{"type": "string", "format": "date"}, {"type": "null"}]},
+    "email": {"type": "string", "format": "email"},
+    "phone_number": {"anyOf": [{"type": "string"}, {"type": "null"}]},
+    "address": {"type": "string"},
+    "city": {"type": "string"},
+    "country": {"type": "string"},
+    "postcode": {"type": "string"},
+    "last_change": {"type": "string", "format": "date-time"},
+    "segment": {"anyOf": [{"type": "string"}, {"type": "null"}]}
+  },
+  "required": ["id", "first_name", "last_name", "email"],
+  "additionalProperties": false
+}

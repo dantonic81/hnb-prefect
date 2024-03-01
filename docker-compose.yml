@@ -65,7 +65,8 @@ services:
   ### Prefect CLI
   cli:
     image: prefecthq/prefect:2.11.5-python3.11
-    entrypoint: "bash"
+    entrypoint: >
+      bash -c "pip install -r requirements.txt && exec bash"
     working_dir: "/root/flows"
     volumes:
       - "./flows:/root/flows"
