@@ -70,6 +70,7 @@ services:
     working_dir: "/root/flows"
     volumes:
       - "./flows:/root/flows"
+      - "cli:/usr/local/lib/python3.11/site-packages/"
     environment:
       - PREFECT_API_URL=http://server:4200/api
 #       Use PREFECT_API_KEY to use the CLI to interact with Prefect Cloud
@@ -80,6 +81,7 @@ volumes:
   prefect:
   db:
   minio:
+  cli:
 networks:
   default:
     name: prefect-network
