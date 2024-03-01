@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "transaction_id": {"type": "string"},
+    "transaction_time": {"type": "string", "format": "date-time"},
+    "customer_id": {"type": "string"},
+    "delivery_address": {
+      "type": "object",
+      "properties": {
+        "address": {"type": "string"},
+        "postcode": {"type": "string"},
+        "city": {"type": "string"},
+        "country": {"type": "string"}
+      },
+      "required": ["address", "postcode", "city", "country"],
+      "additionalProperties": false
+    },
+    "purchases": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sku": {"type": "integer"},
+              "quanitity": {"type": "integer"},
+              "price": {"type": "string"},
+              "total": {"type": "string"}
+            },
+            "required": ["sku", "quanitity", "price", "total"],
+            "additionalProperties": false
+          }
+        },
+        "total_cost": {"type": "string"}
+      },
+      "required": ["products", "total_cost"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["transaction_id", "transaction_time", "customer_id", "delivery_address", "purchases"],
+  "additionalProperties": false
+}
