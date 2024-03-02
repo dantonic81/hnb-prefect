@@ -22,10 +22,25 @@ services:
     entrypoint: ["minio", "server", "--address", "0.0.0.0:9000", "--console-address", "0.0.0.0:9001", "/data"]
     volumes:
       - "minio:/data"
+      - "./raw_data:/mnt/raw_data"
     ports:
       - 9000:9000
       - 9001:9001
+    env_file:
+      - flows/.env
     profiles: ["minio"]
+
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb myminio/somebucketname;
+      exit 0;
+      "
 
   ### Prefect Server API and UI
   server:
