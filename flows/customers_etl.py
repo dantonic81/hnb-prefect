@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-RAW_DATA_PATH = "raw_data"
+RAW_DATA_PATH = "rawdata"
 PROCESSED_DATA_PATH = "processed_data"
 ARCHIVED_DATA_PATH = "archived_data"
 INVALID_RECORDS_TABLE = "data.invalid_customers"
@@ -227,15 +227,15 @@ def process_hourly_data(
     # Record the start time
     start_time = datetime.now()
 
-    # Extract raw_data
+    # Extract rawdata
     customers_data = extract_data(dataset_paths.get("customers.json.gz", ""))
 
-    # Transform and validate raw_data
+    # Transform and validate rawdata
     transformed_customers = transform_and_validate_customers(
         connection, customers_data, date, hour
     )
 
-    # Load processed raw_data
+    # Load processed rawdata
     load_data(
         transformed_customers, "customers.json.gz", date, hour, PROCESSED_DATA_PATH
     )
@@ -281,7 +281,7 @@ def process_all_data(connection: Any) -> None:
     try:
         date_folders = os.listdir(RAW_DATA_PATH)
         date_folders.sort()
-        # Process all available raw_data
+        # Process all available rawdata
         for date_folder in date_folders:
             date_path = os.path.join(RAW_DATA_PATH, date_folder)
 
@@ -306,7 +306,7 @@ def process_all_data(connection: Any) -> None:
                 else:
                     logger.warning(f"No datasets found for {date_folder}/{hour_folder}")
 
-        # Clean up empty directories in raw_data after processing
+        # Clean up empty directories in rawdata after processing
         cleanup_empty_directories(RAW_DATA_PATH)
 
     except (psycopg2.Error, Exception):

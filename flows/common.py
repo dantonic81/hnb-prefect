@@ -172,11 +172,11 @@ def extract_data(file_path: str) -> list:
     _, file_extension = os.path.splitext(file_path)
 
     if file_extension == ".gz":
-        # Extract raw_data from a gzipped JSON file
+        # Extract rawdata from a gzipped JSON file
         with gzip.open(file_path, "rt") as file:
             data = [json.loads(line) for line in file]
     elif file_extension == ".json":
-        # Extract raw_data from a plain JSON file
+        # Extract rawdata from a plain JSON file
         with open(file_path, "r", encoding="utf-8") as file:
             data = [json.load(file)]
     else:
