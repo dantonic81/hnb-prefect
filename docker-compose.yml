@@ -42,7 +42,7 @@ services:
       /bin/sh -c "
       /usr/bin/mc alias set myminio http://minio:9000 minioadmin minioadmin;
       /usr/bin/mc mb --ignore-existing myminio/rawdata;
-      cp -r /mnt/rawdata/* data/rawdata/;
+      /usr/bin/mc cp -r /mnt/rawdata/* data/rawdata/;
       exit 0;
       "
 
